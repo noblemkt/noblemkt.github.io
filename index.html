@@ -354,7 +354,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
 .proc-desc{font-size:.95rem;color:var(--gray3);line-height:1.8}
 
 /* ── NOTICE ── */
-#notice{background:#07111F;padding:52px 6%}
+#notice{background:#0D1E35;padding:52px 6%}
 .notice-inner{max-width:1200px;margin:0 auto}
 .notice-tag{color:rgba(255,255,255,.25);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:1.25rem}
 .notice-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
@@ -388,27 +388,31 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
 /* ── FOOTER ── */
-footer{background:#040D1C;padding:60px 6% 36px}
+footer{background:#0A1628;padding:64px 6% 40px}
 .ft-inner{max-width:1200px;margin:0 auto}
 .ft-top{
   display:flex;justify-content:space-between;align-items:flex-start;
-  padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.06);
+  padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.12);
   gap:2rem;flex-wrap:wrap;
 }
-.ft-logo{height:32px;filter:brightness(10);opacity:.8}
-.ft-brand p{font-size:.8rem;color:rgba(255,255,255,.3);margin-top:.6rem}
+.ft-logo-text{
+  font-size:1.3rem;font-weight:800;letter-spacing:.18em;
+  color:var(--white);display:block;margin-bottom:.6rem;
+}
+.ft-logo-text span{color:var(--gold)}
+.ft-brand p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.7;margin-top:.3rem}
 .ft-links{display:flex;gap:3.5rem;flex-wrap:wrap}
-.ft-col h4{color:rgba(255,255,255,.65);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.9rem}
-.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.ft-col a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.8rem;transition:color .2s}
+.ft-col h4{color:var(--white);font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.ft-col a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.88rem;transition:color .2s}
 .ft-col a:hover{color:var(--gold)}
 .ft-bot{
   padding-top:1.75rem;display:flex;justify-content:space-between;
   align-items:center;flex-wrap:wrap;gap:1rem;
 }
-.ft-copy{font-size:.76rem;color:rgba(255,255,255,.22)}
+.ft-copy{font-size:.82rem;color:rgba(255,255,255,.5)}
 .ft-legal{display:flex;gap:1.5rem}
-.ft-legal a{color:rgba(255,255,255,.2);text-decoration:none;font-size:.76rem;transition:color .2s}
+.ft-legal a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.82rem;transition:color .2s}
 .ft-legal a:hover{color:var(--gold)}
 
 /* ── SCROLL TOP ── */
@@ -736,8 +740,9 @@ footer{background:#040D1C;padding:60px 6% 36px}
   <div class="ft-inner">
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="logo.png" alt="노블마케팅" class="ft-logo">
-        <p>병원 마케팅 전문 · NOBLE MARKETING<br>국내 포털부터 해외 환자까지, 단 하나의 파트너</p>
+        <span class="ft-logo-text">NOBLE <span>MARKETING</span></span>
+        <p>병원 마케팅 전문</p>
+        <p>국내 포털부터 해외 환자까지, 단 하나의 파트너</p>
       </div>
       <div class="ft-links">
         <div class="ft-col">
