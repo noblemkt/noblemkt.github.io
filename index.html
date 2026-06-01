@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -252,7 +253,13 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
   transition:background .25s;
 }
 .svc-item:hover{background:rgba(196,153,58,.07)}
-.svc-icon{font-size:1.75rem;margin-bottom:.9rem}
+.svc-icon{
+  width:48px;height:48px;border-radius:10px;
+  background:rgba(196,153,58,.12);border:1px solid rgba(196,153,58,.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;
+}
+.svc-icon i{font-size:1.4rem;color:var(--gold2)}
 .svc-name{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
 .svc-count{color:var(--gold2);font-size:.8rem;font-weight:600;margin-bottom:.6rem}
 .svc-desc{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.7}
@@ -602,12 +609,12 @@ footer{background:#040D1C;padding:60px 6% 36px}
       <p>여러 대행사에 나눠 맡길 필요 없습니다. 노블마케팅 하나로 전 채널을 통합 운영합니다.</p>
     </div>
     <div class="svc-grid" data-aos="fade-up" data-aos-delay="100">
-      <div class="svc-item"><div class="svc-icon">📗</div><div class="svc-name">네이버 블로그</div><div class="svc-count">월 20건</div><p class="svc-desc">황금키워드 + 고정IP + 이웃관리로 네이버 검색 상위 노출을 목표합니다.</p></div>
-      <div class="svc-item"><div class="svc-icon">📷</div><div class="svc-name">인스타그램</div><div class="svc-count">월 40건</div><p class="svc-desc">비주얼 중심 SNS로 병원 브랜드 이미지를 구축합니다.</p></div>
-      <div class="svc-item"><div class="svc-icon">🔗</div><div class="svc-name">스레드 SNS</div><div class="svc-count">월 40건</div><p class="svc-desc">최신 SNS 플랫폼으로 새로운 환자층에 접근합니다.</p></div>
-      <div class="svc-item"><div class="svc-icon">🌐</div><div class="svc-name">구글 블로그</div><div class="svc-count">월 20건</div><p class="svc-desc">해외 환자 유입을 위한 영어권 타깃 콘텐츠를 운영합니다.</p></div>
-      <div class="svc-item"><div class="svc-icon">📝</div><div class="svc-name">워드프레스</div><div class="svc-count">월 20건</div><p class="svc-desc">해외 검색엔진 SEO를 통한 글로벌 노출을 달성합니다.</p></div>
-      <div class="svc-item"><div class="svc-icon">🐦</div><div class="svc-name">트위터 (X)</div><div class="svc-count">월 40건</div><p class="svc-desc">일본 환자 타깃 특화 콘텐츠로 일본어권 유입을 확보합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-file-text-line"></i></div><div class="svc-name">네이버 블로그</div><div class="svc-count">월 20건</div><p class="svc-desc">황금키워드 + 고정IP + 이웃관리로 네이버 검색 상위 노출을 목표합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-instagram-line"></i></div><div class="svc-name">인스타그램</div><div class="svc-count">월 40건</div><p class="svc-desc">비주얼 중심 SNS로 병원 브랜드 이미지를 구축합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-at-line"></i></div><div class="svc-name">스레드 SNS</div><div class="svc-count">월 40건</div><p class="svc-desc">최신 SNS 플랫폼으로 새로운 환자층에 접근합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-google-line"></i></div><div class="svc-name">구글 블로그</div><div class="svc-count">월 20건</div><p class="svc-desc">해외 환자 유입을 위한 영어권 타깃 콘텐츠를 운영합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-wordpress-line"></i></div><div class="svc-name">워드프레스</div><div class="svc-count">월 20건</div><p class="svc-desc">해외 검색엔진 SEO를 통한 글로벌 노출을 달성합니다.</p></div>
+      <div class="svc-item"><div class="svc-icon"><i class="ri-twitter-x-line"></i></div><div class="svc-name">트위터 (X)</div><div class="svc-count">월 40건</div><p class="svc-desc">일본 환자 타깃 특화 콘텐츠로 일본어권 유입을 확보합니다.</p></div>
     </div>
   </div>
 </section>
@@ -657,7 +664,6 @@ footer{background:#040D1C;padding:60px 6% 36px}
         <ul class="pkg-feats">
           <li><span class="chk">✓</span>DELUXE 전체 포함</li>
           <li><span class="chk">✓</span>네이버플레이스 최적화</li>
-          <li><span class="chk">✓</span>지도 검색 상위 노출</li>
         </ul>
         <div class="pkg-foot">
           <div class="pkg-meta"><div class="pmeta"><span>작업 기간</span><strong>30일</strong></div><div class="pmeta"><span>수정 횟수</span><strong>15회</strong></div></div>
