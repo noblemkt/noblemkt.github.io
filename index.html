@@ -209,7 +209,12 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
 .why-card p{font-size:.95rem;color:var(--gray3);line-height:1.8}
 
 /* ── COMPARE ── */
-#compare{background:var(--navy)}
+#compare{
+  position:relative;
+  background:url('img-dashboard.jpg') center/cover no-repeat;
+}
+#compare::before{content:'';position:absolute;inset:0;background:rgba(8,15,30,.92)}
+#compare .sec-inner{position:relative;z-index:1}
 .cmp-top{text-align:center;margin-bottom:3.5rem}
 .cmp-top .sec-h{color:var(--white)}
 .cmp-top .sec-p{color:rgba(255,255,255,.5);margin:0 auto}
@@ -349,13 +354,15 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
 
 /* ── CTA ── */
 #cta{
-  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
-  text-align:center;padding:130px 6%;position:relative;overflow:hidden;
+  position:relative;
+  text-align:center;padding:130px 6%;overflow:hidden;
+  background:url('img-seoul.jpg') center/cover no-repeat;
 }
-#cta::before{
+#cta::before{content:'';position:absolute;inset:0;background:rgba(8,15,30,.88)}
+#cta::after{
   content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:800px;height:800px;border-radius:50%;
-  background:radial-gradient(circle,rgba(196,153,58,.06) 0%,transparent 65%);
+  background:radial-gradient(circle,rgba(196,153,58,.07) 0%,transparent 65%);
 }
 .cta-in{position:relative;z-index:1}
 .cta-h{
