@@ -37,16 +37,16 @@ body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text);backgro
   transition:all .35s ease;
 }
 #nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(0,0,0,.07)}
-#nav.hero-nav .logo-img{mix-blend-mode:screen;filter:none}
 #nav.hero-nav .nav-link{color:rgba(255,255,255,.85)}
 #nav.hero-nav .nav-link:hover{color:var(--gold2)}
 #nav.hero-nav .nav-btn{background:var(--gold);color:var(--navy)}
-.logo-img{height:68px;transition:all .35s}
-#nav.solid .logo-img{height:54px;mix-blend-mode:normal}
+#nav.hero-nav .logo-wrap{background:rgba(8,18,36,.55);border-radius:6px;padding:4px 6px}
+.logo-img{height:52px;transition:all .35s;display:block}
+#nav.solid .logo-img{height:46px}
 .logo-text{
-  font-size:.72rem;font-weight:800;line-height:1.4;
-  letter-spacing:.12em;color:var(--white);
-  transition:color .35s;
+  font-size:1.05rem;font-weight:800;
+  letter-spacing:.18em;white-space:nowrap;
+  color:var(--white);transition:color .35s;
 }
 #nav.solid .logo-text{color:var(--navy)}
 .nav-links{display:flex;align-items:center;gap:2.4rem;list-style:none}
@@ -456,9 +456,9 @@ footer{background:#040D1C;padding:60px 6% 36px}
 
 <!-- NAV -->
 <nav id="nav" class="hero-nav">
-  <a href="#" style="display:flex;align-items:center;gap:.75rem;text-decoration:none">
-    <img src="logo.png" alt="노블마케팅" class="logo-img">
-    <span class="logo-text">NOBLE<br>MARKETING</span>
+  <a href="#" style="display:flex;align-items:center;gap:.85rem;text-decoration:none">
+    <div class="logo-wrap"><img src="logo.png" alt="노블마케팅" class="logo-img"></div>
+    <span class="logo-text">NOBLE MARKETING</span>
   </a>
   <ul class="nav-links">
     <li><a href="#why" class="nav-link">서비스 강점</a></li>
