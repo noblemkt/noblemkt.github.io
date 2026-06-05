@@ -1088,31 +1088,84 @@ document.getElementById('hbg').addEventListener('click',()=>{
 });
 function closeMob(){document.getElementById('mobMenu').classList.remove('on')}
 
+function parseBlogXml(xmlStr){
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(xmlStr,'text/xml');
+  const nodes = Array.from(xml.querySelectorAll('item')).slice(0,6);
+  return nodes.map(node=>{
+    const title = node.querySelector('title')?.textContent?.trim()||'';
+    const linkNode = node.querySelector('link');
+    const link = linkNode ? (linkNode.nextSibling?.textContent?.trim()||linkNode.textContent?.trim()||'') : '';
+    const pubDate = node.querySelector('pubDate')?.textContent||'';
+    const rawDesc = node.querySelector('description')?.textContent||'';
+    const tmp = document.createElement('div');
+    tmp.innerHTML = rawDesc;
+    const imgEl = tmp.querySelector('img');
+    const thumb = imgEl ? (imgEl.getAttribute('src')||'') : '';
+    const desc = tmp.textContent.replace(/\s+/g,' ').trim().substring(0,80);
+    const d = pubDate ? new Date(pubDate) : null;
+    return {title,link,date:d,thumb,desc};
+  });
+}
+
+function renderBlogCards(items){
+  const grid = document.getElementById('blogGrid');
+  if(!items||!items.length){
+    grid.innerHTML='<div class="blog-status">아직 등록된 글이 없습니다. <a href="https://blog.naver.com/korea74311" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700">블로그 바로가기 →</a></div>';
+    return;
+  }
+  grid.innerHTML = items.map(item=>{
+    const dateStr = item.date&&!isNaN(item.date) ? item.date.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'}) : '';
+    const thumbHtml = item.thumb
+      ? `<img src="${item.thumb}" alt="" class="blog-thumb" loading="lazy" onerror="this.style.display='none'">`
+      : `<div class="blog-thumb-ph">✦</div>`;
+    return `<a href="${item.link||'https://blog.naver.com/korea74311'}" target="_blank" rel="noopener" class="blog-card">
+      ${thumbHtml}
+      <div class="blog-body">
+        <div class="blog-date">${dateStr}</div>
+        <div class="blog-title">${item.title}</div>
+        <div class="blog-desc">${item.desc}</div>
+      </div>
+    </a>`;
+  }).join('');
+  AOS.refresh();
+}
+
 async function loadBlog(){
   const grid = document.getElementById('blogGrid');
+  const RSS = 'https://rss.blog.naver.com/korea74311.xml';
+  let items = null;
+
+  // 1차: allorigins (XML 직접 파싱)
   try{
-    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Frss.blog.naver.com%2Fkorea74311.xml&count=6');
-    const data = await res.json();
-    if(data.status!=='ok'||!data.items||!data.items.length) throw new Error();
-    grid.innerHTML = data.items.map(item=>{
-      const d = new Date(item.pubDate);
-      const date = isNaN(d)?'':d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
-      const thumb = item.thumbnail || (item.enclosure&&item.enclosure.link) || '';
-      const desc = (item.description||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().substring(0,80);
-      const thumbHtml = thumb
-        ? `<img src="${thumb}" alt="" class="blog-thumb" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\'blog-thumb-ph\\'>✦</div>'">`
-        : `<div class="blog-thumb-ph">✦</div>`;
-      return `<a href="${item.link}" target="_blank" rel="noopener" class="blog-card">
-        ${thumbHtml}
-        <div class="blog-body">
-          <div class="blog-date">${date}</div>
-          <div class="blog-title">${item.title||''}</div>
-          <div class="blog-desc">${desc}</div>
-        </div>
-      </a>`;
-    }).join('');
-    AOS.refresh();
-  }catch(e){
+    const r = await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(RSS));
+    const j = await r.json();
+    if(j&&j.contents){
+      const parsed = parseBlogXml(j.contents);
+      if(parsed.length) items = parsed;
+    }
+  }catch(e){}
+
+  // 2차: rss2json fallback
+  if(!items){
+    try{
+      const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(RSS)+'&count=6');
+      const j = await r.json();
+      if(j.status==='ok'&&j.items&&j.items.length){
+        items = j.items.map(item=>({
+          title: item.title||'',
+          link: item.link||'',
+          date: item.pubDate ? new Date(item.pubDate) : null,
+          thumb: item.thumbnail||(item.enclosure&&item.enclosure.link)||'',
+          desc: (item.description||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().substring(0,80)
+        }));
+      }
+    }catch(e){}
+  }
+
+  if(items){
+    renderBlogCards(items);
+  }else{
     grid.innerHTML=`<div class="blog-status">블로그 글을 불러올 수 없습니다. <a href="https://blog.naver.com/korea74311" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700">블로그 바로가기 →</a></div>`;
   }
 }
